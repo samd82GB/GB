@@ -20,7 +20,7 @@ public class Main {
 
     //Вызов метода для задания 6.
 
-    int [] massBalance = {2, 3, 8, 1, 1, 7, 3, 3};
+    int [] massBalance = {5, 7, 2, 1, 0, 7, 3, 3};
     boolean balance = checkBalance(massBalance);
     System.out.println("Результат логической обработки задания 6: "+balance);
     System.out.println("-----------------");
@@ -178,7 +178,10 @@ public class Main {
     static boolean checkBalance(int[] a)
     {
         System.out.println("Задание 6**:");
-        int y=a.length -1; //длина массива -1, определение номера последнего члена массива
+        System.out.println("Исходное значение массива:");
+        System. out .println(Arrays. toString (a));
+
+        //int y=a.length -1; //длина массива -1, определение номера последнего члена массива
 
         boolean equal = false;
 
@@ -187,14 +190,14 @@ public class Main {
             int sumLeft = 0;
             int sumRight = 0;
             int j = 0;
-            while (j<=i)
+            while (j<=i) //Вычисление суммы левой части массива
             {
                sumLeft = a[j] + sumLeft;
                j++;
             }
 
             int z = i+1;
-            for (int rightInd = z; rightInd<a.length; rightInd++ )
+            for (int rightInd = z; rightInd<a.length; rightInd++ ) //Вычисление суммы правой части массива
             {
                 sumRight = a[rightInd]+sumRight;
             }
@@ -209,7 +212,8 @@ public class Main {
 
                 }
                 System.out.print("|| ");
-                for (int p2 = i; p2<a.length; p2++)
+                int rightBegin = i+1;
+                for (int p2 = rightBegin; p2<a.length; p2++)
                 {
                     System.out.print(a[p2]+ " ");
                 }
@@ -237,7 +241,7 @@ static void shiftNumbers(int[] a, int n)
 
 
         int y = a.length -1; //определение крайнего правого положения в массиве
-        int newPos =0;
+        //int newPos =0;
 
     if (n>0) //сдвиг вправо
     {
