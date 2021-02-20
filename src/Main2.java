@@ -26,11 +26,39 @@ public class Main2 {
 
    public static void theGame2() {
        System.out.println("Игра Угадай слово!");
-       System.out.println("Нужно загадать слово из следующих значений: ");
-       System. out .println(Arrays.toString(words));
+       System.out.println("Нужно угадать слово из следующих значений: ");
+      /* System. out .println(Arrays.toString(words));*/
+//Сделал цикл для того, чтобы раскидать массив слов на несколько строчек при печати
+       for (int p= 0; p< words.length; p++)
+       {
+           int n = (p+1)%8;
+           int n2 = words.length-1;
+
+           if (p==n2)
+           {
+               System.out.print(words[p]+" ]");
+               System.out.println();
+           }
+           else if (n==0&&p!=0)
+           {
+               System.out.print(words[p]+ ", ");
+               System.out.println();
+           }
+           else if (p==0)
+           {
+               System.out.print("["+words[p]+", ");
+           }
+           else System.out.print(words[p]+ ", ");
+       }
+
        wordToGuess = newWord();
        startGame();
        System.out.println("Поздравляем! Вы угадали слово " + wordToGuess);
+       //Обнуляем значения массива отображения перед началом новой игры
+       for (char zero:showChars)
+       {
+        zero = '#';
+       }
    }
 
     static void startGame () {
@@ -82,8 +110,8 @@ public class Main2 {
     {
         int la = inputWord.length(); // получаем длину введённого слова
         int lb = wordToGuess.length(); // получаем длину загаданного слова
-        char [] iWch = new char[la];
-        char [] wTGch = new char[lb];
+        char [] iWch = new char[la];    // вспомогательный массив char длиной введенного слова
+        char [] wTGch = new char[lb];   // вспомогательный массив char длиной загаданного слова
 
         for (int i =0; i<la; i++)
         {
@@ -94,7 +122,7 @@ public class Main2 {
         {
             wTGch[i] = wordToGuess.charAt(i);
         }
-
+//Определение границы для сравнения букв в загаданном и введённом словах, выбираем более короткое слово
         int limChars = 0;
         if (la>=lb)
         {
@@ -103,8 +131,8 @@ public class Main2 {
         else {
             limChars = la;
         }
-
-
+//Если чары равны, то записываем в массив отображения букву загаданного слова
+        char grid = '#';
         for (int i=0; i< limChars; i++)   //цикл от 0 до размера минимального слова для проверки букв
         {
             if (iWch[i]==wTGch[i])
@@ -112,10 +140,14 @@ public class Main2 {
                 showChars [i]= wTGch[i];
 
             }
-            else showChars[i] = '#';
+            //Условие, чтобы при последующих заходах не затирались ранее угаданные буквы
+            else if (showChars[i]!=wTGch[i])
+            {
+                showChars[i] = grid;
+            }
         }
         for (int i=limChars;i<showChars.length;i++)
-            showChars[i] = '#';
+            showChars[i] = grid;
 
     }
 
