@@ -1,3 +1,5 @@
+package Level2Lesson2;
+
 public class MyArraySizeException extends ArrayIndexOutOfBoundsException {
 
     private int qStrings; //количество строк
