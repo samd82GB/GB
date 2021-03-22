@@ -1,4 +1,4 @@
-package Level2Lesson2;
+package Lesson2HW;
 
 public class MyArrayDataException extends NumberFormatException{
     String notNumber;
